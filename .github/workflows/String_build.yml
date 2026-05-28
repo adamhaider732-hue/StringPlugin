@@ -1,0 +1,17 @@
+name: Build StringPlugin
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+      - name: Build
+        run: mvn package -B
+      - uses: actions/upload-artifact@v4
+        with:
+          name: StringPlugin
+          path: target/StringPlugin-1.0.0.jar
